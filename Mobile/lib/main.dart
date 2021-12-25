@@ -9,7 +9,7 @@ class TodoApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      builder: (context) => TaskProvider(),
+      create: (_) => TaskProvider(),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Todos',

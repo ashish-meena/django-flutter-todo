@@ -19,7 +19,7 @@ class TaskProvider extends ChangeNotifier {
 
   void addTodo(Task task) async {
     final response = await http.post(
-      "http://10.0.2.2:8000/todo",
+      Uri.parse("http://10.0.2.2:8000/todo"),
       headers: {"Content-Type": "application/json"},
       body: json.encode(task),
     );
@@ -34,7 +34,7 @@ class TaskProvider extends ChangeNotifier {
     final taskIndex = _tasks.indexOf(task);
     _tasks[taskIndex].toggleCompleted();
     final response = await http.patch(
-      "http://10.0.2.2:8000/todo/${task.id}",
+      Uri.parse("http://10.0.2.2:8000/todo/${task.id}"),
       headers: {"Content-Type": "application/json"},
       body: json.encode(task),
     );
@@ -45,9 +45,9 @@ class TaskProvider extends ChangeNotifier {
     }
   }
 
-  void deleteTodo(Task task) async{
+  void deleteTodo(Task task) async {
     final response = await http.delete(
-      "http://10.0.2.2:8000/todo/${task.id}",
+      Uri.parse("http://10.0.2.2:8000/todo/${task.id}"),
     );
     if (response.statusCode == 204) {
       _tasks.remove(task);
@@ -56,7 +56,7 @@ class TaskProvider extends ChangeNotifier {
   }
 
   fetchTaks() async {
-    final response = await http.get("http://10.0.2.2:8000/todo");
+    final response = await http.get(Uri.parse("http://10.0.2.2:8000/todo"));
     if (response.statusCode == 200) {
       var data = json.decode(response.body) as List;
       _tasks = data.map<Task>((json) => Task.fromJason(json)).toList();
