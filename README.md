@@ -1,4 +1,4 @@
-#Upgraded to work with flutter 2.8.1 and Django 4.0
+# Upgraded to work with flutter 2.8.1 and Django 4.0
 
 # Todo Application
 *Flutter + Provider + django + django REST Framework*
